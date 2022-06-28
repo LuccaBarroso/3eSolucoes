@@ -1,0 +1,10 @@
+.card{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  max-width:90vw;
+  background-color:white;
+  border-radius:30px;
+  padding:20px 7vw;
+}
