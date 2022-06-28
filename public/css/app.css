@@ -32,6 +32,7 @@ body{
 .topnav .btns .btn svg{
   width: 20px;
   height: 20px;
+  padding: 20px;
   color: #E8670D;
 }
 .content{
@@ -43,3 +44,27 @@ body{
   align-items: center;
 }
 
+.modal{
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+}
+.modalContent{
+  background-color: white;
+  margin: 15% auto;
+  padding:20px;
+  width: 300px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.modalContent p{
+  text-align: center;
+  width: 100%;
+}

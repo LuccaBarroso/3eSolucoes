@@ -4,6 +4,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+  <script src="{{ asset('js/modalCloseBtn.js')}}"></script>
   @yield("extraHeadTags")
   <link href="{{ URL::asset('css/app.css') }}" rel="stylesheet">
   <meta charset="UTF-8">
@@ -21,13 +22,17 @@
   </div>
   <div class="content">   
     @if(isset($msg))
-      <div class="alert alert-success">
-        <p>{{ $msg }}</p>
+      <div class="modal" id="modal">
+        <div class="modalContent">
+          <p>{{ $msg }}</p>
+        </div>
       </div>
     @endif 
     @if(old("msg"))
-      <div class="alert alert-success">
-        <p>{{ old("msg") }}</p>
+      <div class="modal" id="modal">
+        <div class="modalContent">
+          <p>{{ old("msg") }}</p>
+        </div>
       </div>
     @endif 
     @yield("content")
