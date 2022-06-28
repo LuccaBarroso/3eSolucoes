@@ -19,7 +19,17 @@
       @yield("topnavbtns")
     </div>
   </div>
-  <div class="content">    
+  <div class="content">   
+    @if(isset($msg))
+      <div class="alert alert-success">
+        <p>{{ $msg }}</p>
+      </div>
+    @endif 
+    @if(old("msg"))
+      <div class="alert alert-success">
+        <p>{{ old("msg") }}</p>
+      </div>
+    @endif 
     @yield("content")
   </div>
 </body>
