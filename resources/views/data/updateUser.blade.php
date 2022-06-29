@@ -2,6 +2,14 @@
 <link href="{{ URL::asset('css/card.css') }}" rel="stylesheet">
 <link href="{{ URL::asset('css/form.css') }}" rel="stylesheet">
 @section("title", "Register")
+
+
+@section("topnavbtns")
+<a class="btn" href="/"><x-heroicon-o-users /></a>
+<a class="btn" href="/delete"><x-monoicon-delete /></a>
+<a href="/logout" class="btn"><x-heroicon-o-logout /></a>
+@endsection
+
 @section("content")
 <form class="card" action="{{ route('edit-user') }}" method="post">
   @csrf
