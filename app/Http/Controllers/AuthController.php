@@ -48,7 +48,7 @@ class AuthController extends Controller
         $user->password = bcrypt($request->password);
         $res = $user->save();
         if($res){
-            return view("auth.login", ["msg"=>"Usuário cadastrado com sucesso!"]);
+            return redirect("/")->withInput(array('msg' => "Usuário cadastrado com sucesso!"));
         }else{
             return back()->withInput(array('msg' => "Erro ao cadastrar usuário"));
         }
