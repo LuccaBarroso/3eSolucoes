@@ -11,9 +11,26 @@ class AuthController extends Controller
     public function login(){
         return view("auth.login");
     }
+
     public function register(){
         return view("auth.register");
     }
+    
+    public function loginUser(Request $request){
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+        $user = User::where("email", $request->email)->first();
+        if($user){
+            if(password_verify($request->password, $user->password)){
+                $request->session()->put("userId", $user->id);
+                return redirect("/");
+            }
+        }
+        return back()->withInput(array('msg' => "E-mail ou senha inválidos"));
+    }
+    
     public function registerUser(Request $request){
         $request->validate([
             'name' => 'required',
@@ -37,48 +54,27 @@ class AuthController extends Controller
         }
         
     }
-    public function loginUser(Request $request){
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:6'
-        ]);
-        $user = User::where("email", $request->email)->first();
-        if($user){
-            if(password_verify($request->password, $user->password)){
-                $request->session()->put("userId", $user->id);
-                return redirect("/");
-            }
-        }
-        return back()->withInput(array('msg' => "E-mail ou senha inválidos"));
-    }
+
     public function allUsers(Request $request){
-        if($request->Session()->has("userId")){
-            $users = User::all();
-            $curUserName = User::find($request->Session()->get("userId"))->name;
-            return view("data.allUsers", ["users"=>$users, "curUserName"=>$curUserName]);
-        }
-        return redirect("/login");
+        $users = User::all();
+        $curUserName = User::find($request->Session()->get("userId"))->name;
+        return view("data.allUsers", ["users"=>$users, "curUserName"=>$curUserName]);
     }
+
     public function logOut(Request $request){
-        if($request->Session()->has("userId")){
-            $request->Session()->forget("userId");
-        }
+        $request->Session()->forget("userId");
         return redirect("/login");
     }
+
     public function delete(Request $request){
-        if($request->Session()->has("userId")){
-            return view("data.deleteUser", ["userEmail"=>User::find($request->Session()->get("userId"))->email]);
-        }
+        return view("data.deleteUser", ["userEmail"=>User::find($request->Session()->get("userId"))->email]);
         return redirect("/login");
     }
 
     public function edit(Request $request)
     {
-        if($request->Session()->has("userId")){
         $user = User::where("id", $request->Session()->get("userId"))->first();
-            return view("data.updateUser", ["user"=>$user]);
-        }
-        return redirect("/login");
+        return view("data.updateUser", ["user"=>$user]);
     }
 
     public function editUser(Request $request){
@@ -101,15 +97,10 @@ class AuthController extends Controller
     }
 
     public function deleteUser(Request $request){
-        if($request->Session()->has("userId")){
-            $curId = $request->Session()->get("userId");
-            $user = User::where("id", $curId)->first();
-            $user->delete();
-            $request->Session()->forget("userId");
-            return redirect("/login")->withInput(array('msg' => "Usuário deletado com sucesso!"));
-        }
-        
-        return redirect("/login");
-        
+        $curId = $request->Session()->get("userId");
+        $user = User::where("id", $curId)->first();
+        $user->delete();
+        $request->Session()->forget("userId");
+        return redirect("/login")->withInput(array('msg' => "Usuário deletado com sucesso!"));
     }
 }

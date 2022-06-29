@@ -46,6 +46,11 @@ form button{
   margin-bottom: 20px;
 }
 
+form p {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
 .errorMsg{
   color: #E8670D;
   margin-top: -10px;
