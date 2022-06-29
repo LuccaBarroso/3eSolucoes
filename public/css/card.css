@@ -1,5 +1,6 @@
 .card{
   display:flex;
+  min-height:300px;
   flex-direction:column;
   justify-content:center;
   align-items:center;
@@ -7,4 +8,11 @@
   background-color:white;
   border-radius:30px;
   padding:20px 7vw;
+  overflow: hidden;
+}
+@media (max-width:700px){
+  .card{
+    width:80%;
+    /* margin: 200px 50px; */
+  }
 }

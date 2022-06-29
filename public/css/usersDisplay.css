@@ -2,11 +2,13 @@
   color: #E8670D;
   font-size: 20px;
   font-weight: 400;
+  text-align: center;
 }
 .welcome span{
   font-weight: 600;
 }
 .description{
+  text-align: center;
   font-size: 18px;
   color: #FAD74D;
   font-weight: 600;
@@ -19,4 +21,13 @@ td{
 }
 table{
   padding-top:20px;
+  padding-bottom:20px;
+  width:100%;
+  overflow-x:auto;
+  display: block;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  margin: 0 auto;
+  overflow-x: auto;
+  white-space: nowrap;
 }

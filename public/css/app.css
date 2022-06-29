@@ -68,3 +68,13 @@ body{
   text-align: center;
   width: 100%;
 }
+@media (max-width:600px){
+  .topnav #logo{
+    margin-left:-200px;
+  }
+}
+@media (max-width:370px){
+  .topnav #logo{
+    margin-left:-240px;
+  }
+}
