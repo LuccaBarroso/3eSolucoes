@@ -24,3 +24,4 @@ Route::get("/edit", [AuthController::class, "edit"])->name("edit");
 Route::post("/register-user", [AuthController::class, "registerUser"])->name("register-user");	
 Route::post("/login-user", [AuthController::class, "loginUser"])->name("login-user");
 Route::post("/edit-user", [AuthController::class, "editUser"])->name("edit-user");
+Route::post("/delete-user", [AuthController::class, "deleteUser"])->name("delete-user");

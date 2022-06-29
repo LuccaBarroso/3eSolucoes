@@ -2,6 +2,7 @@
 
 @section("extraHeadTags")
 <link href="{{ URL::asset('css/card.css') }}" rel="stylesheet">
+<link href="{{ URL::asset('css/usersDisplay.css') }}" rel="stylesheet">
 @endSection
 
 @section("title", "All Users")
@@ -14,8 +15,8 @@
 
 @section("content")
   <div class="card">
-    <h4>Bem-Vindo {{ $curUserName }}</h4>
-    <p>Esses são os usuários atualmente cadastrados</p>
+    <h4  class="welcome"><span>Bem-Vindo</span> {{ $curUserName }}</h4>
+    <p class="description">Esses são os usuários atualmente cadastrados</p>
     <table>
       <thead>
         <tr>

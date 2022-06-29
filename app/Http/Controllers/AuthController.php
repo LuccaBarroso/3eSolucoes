@@ -67,10 +67,11 @@ class AuthController extends Controller
     }
     public function delete(Request $request){
         if($request->Session()->has("userId")){
-            return "Usuario sendo deletado " . $request->Session()->get("userId");
+            return view("data.deleteUser", ["userEmail"=>User::find($request->Session()->get("userId"))->email]);
         }
         return redirect("/login");
     }
+
     public function edit(Request $request)
     {
         if($request->Session()->has("userId")){
@@ -96,6 +97,19 @@ class AuthController extends Controller
         $user->save();
 
         return redirect("/")->withInput(array('msg' => "Usuário atualizado com sucesso!"));
+        
+    }
+
+    public function deleteUser(Request $request){
+        if($request->Session()->has("userId")){
+            $curId = $request->Session()->get("userId");
+            $user = User::where("id", $curId)->first();
+            $user->delete();
+            $request->Session()->forget("userId");
+            return redirect("/login")->withInput(array('msg' => "Usuário deletado com sucesso!"));
+        }
+        
+        return redirect("/login");
         
     }
 }
